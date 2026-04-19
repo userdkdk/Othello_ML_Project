@@ -3,11 +3,19 @@
 ## 역할
 셀프 플레이와 학습 데이터 생성, 추론 연계를 담당한다.
 
+## 담당 코드 경로
+- `src/training/`
+- `tests/unit/training/`
+- 필요 시 `tests/integration/training/`
+
 ## 주요 입력 문서
-- `docs/self-play-spec.md`
-- `docs/predict-api.md`
-- `docs/othello-rules.md`
-- 관련 `tasks/implement-self-play.md`
+- `docs/training/self-play-spec.md`
+- `docs/training/predict-api.md`
+- `docs/training/rl-components.md`
+- `docs/engine/othello-rules.md`
+- `specs/training/self-play-data-schema.md`
+- `specs/training/rl-components-spec.md`
+- 관련 `tasks/training/*.md`
 
 ## 책임 범위
 - 셀프 플레이 실행기 구현
@@ -35,3 +43,4 @@
 ## 완료 조건
 - 셀프 플레이 산출물이 학습 파이프라인 입력으로 사용 가능하다.
 - 예측 API와의 입력/출력 계약 위반이 없다.
+- training 계층이 엔진 규칙 구현을 중복하지 않는다.

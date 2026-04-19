@@ -10,6 +10,11 @@
 - 관련 `tasks/*.md`
 - 검토 대상 코드 또는 문서
 
+## 검토 축
+- `engine`: 규칙, 상태 전이, 엔진 테스트
+- `training`: self-play, agent, encoder, evaluator, 데이터 스키마
+- `runtime`: Docker, FastAPI, 웹 UI, 실행 경로
+
 ## 책임 범위
 - 요구사항 누락 확인
 - 규칙과 구현 간 불일치 확인
@@ -27,8 +32,9 @@
 - 가능하면 재현 예시 또는 반례를 포함한다.
 - 우선순위를 `필수 수정`, `권장 수정`, `있으면 좋은 개선`으로 구분한다.
 - 별도 출력 지시가 없으면 검토 대상의 상대 경로를 `reviews/` 아래에 그대로 미러링한다.
-  - 예시: `docs/othello-rules.md` -> `reviews/docs/othello-rules.md`
+  - 예시: `docs/engine/othello-rules.md` -> `reviews/docs/engine/othello-rules.md`
 
 ## 완료 조건
 - 리뷰 결과가 지정된 `reviews/` 경로에 기록되어 있다.
 - 리뷰가 감상이 아니라 기준 대비 차이 중심으로 정리되어 있다.
+- 리뷰 대상이 어느 축에 속하는지 드러난다.

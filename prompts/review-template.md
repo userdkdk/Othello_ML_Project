@@ -6,12 +6,15 @@
 ## 템플릿
 ```md
 검토 대상: <파일 또는 기능>
+코드 경로: <src/engine | src/training | src/api | tests/...>
 
 기준 문서:
 - <관련 docs>
 - <관련 specs>
 - <관련 task>
 - <관련 agent>
+영역:
+- <engine | training | runtime>
 
 리뷰 규칙:
 - 틀리거나 모호한 부분만 작성
