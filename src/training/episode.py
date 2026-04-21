@@ -80,10 +80,10 @@ class Episode:
             self.final_reward = None
             return
 
-        if result == GameResult.BLACK_WIN:
+        if result == GameResult.BLACK:
             self.winner = "BLACK"
             self.final_reward = 1.0
-        elif result == GameResult.WHITE_WIN:
+        elif result == GameResult.WHITE:
             self.winner = "WHITE"
             self.final_reward = -1.0
         else:

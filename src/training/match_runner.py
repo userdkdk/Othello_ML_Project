@@ -14,6 +14,7 @@ from engine.types import GameState, Player
 from training.action_mask import build_action_mask
 from training.agents import Agent
 from training.episode import Episode, TurnRecord
+from training.policy_client import PolicyClient, policy_output_to_dict
 from training.state_encoder import encode_state
 
 
@@ -35,8 +36,8 @@ def run_match(
     episode = Episode(
         episode_id=episode_id,
         seed=seed,
-        policy_black_version=black_agent.version,
-        policy_white_version=white_agent.version,
+        policy_black_version=_resolve_policy_version(black_agent),
+        policy_white_version=_resolve_policy_version(white_agent),
     )
     rng = Random(seed)
     pass_count = 0
@@ -44,9 +45,10 @@ def run_match(
     while not state.status.is_finished:
         valid_moves = get_valid_moves_for_current_player(state)
         acting_agent = black_agent if state.current_player == Player.BLACK else white_agent
-        action = acting_agent.select_action(state.clone(), valid_moves, rng)
         encoded_state = encode_state(state)
         action_mask = build_action_mask(valid_moves)
+        policy_output = _predict_policy_output(acting_agent, state, valid_moves, rng)
+        action = policy_output.selected_action
 
         turn = TurnRecord(
             turn_index=len(episode.turns),
@@ -56,7 +58,7 @@ def run_match(
             valid_moves=list(valid_moves),
             action_mask=action_mask,
             encoded_state=encoded_state,
-            policy_output=None,
+            policy_output=policy_output_to_dict(policy_output),
         )
         episode.turns.append(turn)
 
@@ -86,3 +88,23 @@ def run_match(
         move_count=len([t for t in episode.turns if t.action != "PASS"]),
         pass_count=pass_count,
     )
+
+
+def _predict_policy_output(
+    agent: Agent,
+    state: GameState,
+    valid_moves: list[tuple[int, int]],
+    rng: Random,
+):
+    policy_client = getattr(agent, "policy_client", None)
+    if isinstance(policy_client, PolicyClient):
+        return policy_client.predict(state.clone(), valid_moves, rng)
+
+    return PolicyClient(agent=agent).predict(state.clone(), valid_moves, rng)
+
+
+def _resolve_policy_version(agent: Agent) -> str:
+    policy_client = getattr(agent, "policy_client", None)
+    if isinstance(policy_client, PolicyClient):
+        return policy_client.model_version
+    return agent.version
