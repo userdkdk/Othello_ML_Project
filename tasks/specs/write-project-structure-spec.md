@@ -8,7 +8,7 @@ Python 프로젝트 시작 전에 패키지 구조, 테스트 구조, API 레이
 - `docs/training/self-play-spec.md`
 - `docs/training/predict-api.md`
 - `docs/runtime/runtime-overview.md`
-- `agents/spec-agent.md`
+- `agents/governance-agent.md`
 
 ## 필수 작업
 - `src/` 아래 패키지 구조 정의

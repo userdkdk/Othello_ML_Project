@@ -31,7 +31,24 @@ src/
     policy_client.py
   api/
     __init__.py
+    app_state.py
     fastapi_app.py
+    frontend.py
+    game_router.py
+    runtime.py
+    schemas.py
+    training_router.py
+frontend/
+  package.json
+  index.html
+  vite.config.js
+  src/
+    main.jsx
+    App.jsx
+    components/
+    lib/
+    pages/
+    styles.css
 tests/
   unit/
     engine/
@@ -67,6 +84,12 @@ prompts/
 - 현재 후보는 FastAPI
 - API 레이어는 요청/응답 변환만 담당하고 규칙 계산은 `engine` 또는 `training`에 위임
 
+### `frontend`
+- runtime 전용 프론트엔드 앱
+- 게임 플레이 UI와 학습 운영 UI를 렌더링
+- 상태 조회와 명령 실행은 `src/api`가 제공하는 `/api/*`를 통해서만 수행
+- 게임 규칙 계산과 모델 추론 직접 구현 금지
+
 ## import 방향
 - `engine` -> 다른 프로젝트 계층 import 금지
 - `training` -> `engine` import 가능
@@ -78,6 +101,7 @@ prompts/
 ```text
 api -> training -> engine
 api -> engine
+frontend -> api
 tests -> api/training/engine
 ```
 
@@ -87,6 +111,8 @@ tests -> api/training/engine
 engine -> training
 engine -> api
 training -> api
+frontend -> training
+frontend -> engine
 ```
 
 ## 패키지별 책임
@@ -158,9 +184,50 @@ training -> api
 - 랜덤 정책, 휴리스틱 정책, 모델 정책 래퍼
 
 ### `src/api/fastapi_app.py`
-- FastAPI app 생성
-- 엔진/학습 계층 호출
-- 요청/응답 스키마 연결
+- FastAPI app 조립
+- middleware, router 연결
+- SPA 엔트리포인트와 fallback 등록
+
+### `src/api/runtime.py`
+- 런타임 세션 생성
+- checkpoint 탐색과 모델 로드 fallback
+- 게임 상태/결과 직렬화
+- training snapshot용 공통 helper
+
+### `src/api/game_router.py`
+- `/api/state`
+- `/api/new`
+- `/api/move`
+- `/api/pass`
+- `/api/step`
+
+### `src/api/training_router.py`
+- `/api/training/*` 엔드포인트
+- training 대시보드용 snapshot/placeholder 응답
+
+### `src/api/frontend.py`
+- 빌드된 프론트엔드 정적 파일 마운트
+- `index.html` 제공
+- frontend build 누락 시 제어된 오류 반환
+
+### `src/api/schemas.py`
+- runtime 요청 스키마
+- 새 게임 생성, 수 입력 등 요청 payload 정의
+
+### `frontend/src/App.jsx`
+- route에 따라 페이지 조립
+- 공통 shell과 navigation 연결
+
+### `frontend/src/pages`
+- 게임 플레이 페이지
+- 학습 대시보드 페이지
+
+### `frontend/src/components`
+- 보드, panel, nav, status pill 등 재사용 UI
+
+### `frontend/src/lib`
+- API 호출 helper
+- route 상태 helper
 
 ## 테스트 구조
 
@@ -193,6 +260,7 @@ training -> api
 - API 시작 시 추가 가능:
   - `fastapi`
   - `uvicorn`
+  - `torch`
 - 데이터 포맷 확장 시 추가 가능:
   - `pydantic`
   - `pyarrow`

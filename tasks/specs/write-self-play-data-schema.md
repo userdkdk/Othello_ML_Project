@@ -8,7 +8,7 @@
 - `docs/training/predict-api.md`
 - `docs/engine/othello-rules.md`
 - `docs/training/rl-components.md`
-- `agents/spec-agent.md`
+- `agents/governance-agent.md`
 
 ## 필수 작업
 - 에피소드 단위 저장 구조 정의

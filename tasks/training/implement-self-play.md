@@ -10,7 +10,7 @@
 - `docs/training/rl-components.md`
 - `specs/training/self-play-data-schema.md`
 - `specs/training/rl-components-spec.md`
-- `agents/training-agent.md`
+- `agents/training-data-agent.md`
 
 ## 필수 작업
 - 정책 또는 예측 API를 호출해 수 선택

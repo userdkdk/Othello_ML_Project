@@ -19,6 +19,9 @@
 
 ### `match_runner`
 - `run_match(black_agent, white_agent, seed, episode_id) -> MatchResult`
+- 유효 수가 있으면 agent는 그중 하나를 반환해야 한다.
+- `PASS`는 유효 수가 없을 때만 허용한다.
+- 잘못된 행동은 실패 episode로 전환해야 한다.
 
 ### `random_agent`
 - 유효 수 중 무작위 선택
@@ -35,11 +38,15 @@
 
 ### `self_play_runner`
 - `run_self_play(black_agent, white_agent, num_games, seed)`
+- 내부적으로 각 게임 시드는 `seed + game_index`를 사용한다.
+- 실패 episode는 반환하되 승패 통계에서는 제외한다.
 
 ### `episode`
 - `Episode`
 - `TurnRecord`
 - `EpisodeFailure`
+- `TurnRecord`는 메모리상 `encoded_state`를 포함할 수 있다.
+- 기본 직렬화 출력은 `self-play-data-schema.md`를 따르며, 현재 `encoded_state`는 기본 출력에 포함되지 않는다.
 
 ### `trainer`
 - episode 집합을 입력으로 받아 training report 생성

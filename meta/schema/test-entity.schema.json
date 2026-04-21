@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "meta/schema/test-entity.schema.json",
+  "title": "Test Entity",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "entity_id",
+    "entity_type",
+    "path",
+    "target_symbols",
+    "test_level",
+    "fixtures",
+    "uses_db",
+    "uses_mock",
+    "uses_external_dependency"
+  ],
+  "properties": {
+    "entity_id": {
+      "type": "string",
+      "pattern": "^test:"
+    },
+    "entity_type": {
+      "type": "string",
+      "enum": ["test.unit", "test.integration", "test.e2e"]
+    },
+    "path": {
+      "type": "string"
+    },
+    "target_symbols": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "test_level": {
+      "type": "string",
+      "enum": ["unit", "integration", "e2e"]
+    },
+    "fixtures": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "uses_db": {
+      "type": "boolean"
+    },
+    "uses_mock": {
+      "type": "boolean"
+    },
+    "uses_external_dependency": {
+      "type": "boolean"
+    },
+    "feature_tags": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "owner": {
+      "type": ["string", "null"]
+    },
+    "last_updated": {
+      "type": ["string", "null"],
+      "format": "date"
+    }
+  }
+}

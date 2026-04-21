@@ -32,14 +32,21 @@
 
 ### `episode`
 - 한 판 대국 기록
-- 상태, 행동, action mask, encoded state, reward, 메타데이터 포함
+- 메모리상으로는 상태, 행동, valid moves, action mask, encoded state, reward, 메타데이터를 포함할 수 있다
+- 기본 직렬화 출력은 `specs/training/self-play-data-schema.md`를 따른다
 
 ### `trainer`
-- episode 집합을 입력으로 받아 학습 또는 학습 리포트 생성
+- episode 집합을 입력으로 받아 `TrainingReport` 생성
+- 현재 범위에서는 모델 파라미터 업데이트를 수행하지 않는다
 
 ### `evaluator`
 - agent 대 agent 평가
 - win rate, draw rate, failure rate 산출
+
+## 저장 경계 원칙
+- 메모리상 `TurnRecord`와 기본 저장 스키마를 같은 것으로 가정하면 안 된다.
+- `encoded_state`는 현재 메모리상 필드이지만 기본 직렬화 출력에는 포함되지 않는다.
+- 저장 산출물은 `specs/training/self-play-data-schema.md`를 우선 기준으로 해석한다.
 
 ## 공통 원칙
 - 엔진 규칙은 `docs/engine/othello-rules.md`를 따른다.

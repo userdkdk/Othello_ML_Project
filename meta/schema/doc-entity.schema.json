@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "meta/schema/doc-entity.schema.json",
+  "title": "Document Entity",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "entity_id",
+    "entity_type",
+    "path",
+    "feature_tags",
+    "task_ids",
+    "api_endpoints",
+    "status"
+  ],
+  "properties": {
+    "entity_id": {
+      "type": "string",
+      "pattern": "^doc:"
+    },
+    "entity_type": {
+      "type": "string",
+      "enum": ["doc.file", "doc.section"]
+    },
+    "path": {
+      "type": "string"
+    },
+    "section_id": {
+      "type": ["string", "null"]
+    },
+    "title": {
+      "type": ["string", "null"]
+    },
+    "feature_tags": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "task_ids": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "api_endpoints": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "owner": {
+      "type": ["string", "null"]
+    },
+    "last_updated": {
+      "type": ["string", "null"],
+      "format": "date"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "active", "deprecated"]
+    }
+  }
+}

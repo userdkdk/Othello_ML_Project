@@ -8,14 +8,21 @@
 작업 대상: <task 파일 또는 기능명>
 
 반드시 먼저 읽을 문서:
+- <meta/state/compressed/<axis>.json>
+- <meta/index/*.json 또는 meta/graph/edges.jsonl 중 관련 파일>
 - <관련 task>
 - <관련 docs>
+- <관련 specs>
 - <관련 agent>
 
 요구사항:
 - 기준 문서에 없는 규칙은 임의로 추가하지 말 것
 - 실패 시 상태 불변을 지킬 것
 - 테스트 또는 검증 방법을 함께 남길 것
+- 한 파일 과밀을 피하고 역할별 폴더/모듈 경계를 유지할 것
+- 변경 후 경로만 봐도 영향 범위를 추적할 수 있게 구조를 정리할 것
+- 작업 후 `make meta`
+- 작업 후 `make meta-check`
 
 완료 조건:
 - <구체 완료 조건>

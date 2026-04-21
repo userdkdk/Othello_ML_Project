@@ -43,8 +43,8 @@
 ### `GameResult`
 `Enum`
 
-- `BLACK_WIN`
-- `WHITE_WIN`
+- `BLACK`
+- `WHITE`
 - `DRAW`
 
 ### `GameStatus`
@@ -86,6 +86,11 @@
 선택 필드:
 - `move_history: list[Position | str]`
 - `last_move: Position | str | None`
+
+권장 메서드:
+- `clone() -> GameState`
+  - training 계층에서 agent 호출 시 원본 상태와 분리된 스냅샷을 넘길 수 있어야 한다.
+  - 구현이 메서드 대신 동등한 복제 helper를 택하더라도 외부 계약상 clone 가능한 상태여야 한다.
 
 ## 모듈별 책임
 

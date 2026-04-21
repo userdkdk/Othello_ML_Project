@@ -8,6 +8,11 @@
 검토 대상: <파일 또는 기능>
 코드 경로: <src/engine | src/training | src/api | tests/...>
 
+메타 진입점:
+- <meta/state/compressed/<axis>.json>
+- <meta/index/*.json>
+- <meta/graph/edges.jsonl>
+
 기준 문서:
 - <관련 docs>
 - <관련 specs>
@@ -21,6 +26,7 @@
 - 기준 문서와 연결해서 설명
 - 재현 가능한 반례 또는 근거 우선
 - 우선순위 구분: 필수 수정 / 권장 수정 / 있으면 좋은 개선
+- 리뷰 전 또는 리뷰 후 `make meta-check` 결과 확인
 
 출력 파일:
 - <reviews/<원본 상대 경로>.md 또는 task에서 지정한 경로>

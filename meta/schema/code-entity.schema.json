@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "meta/schema/code-entity.schema.json",
+  "title": "Code Entity",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "entity_id",
+    "entity_type",
+    "module_path",
+    "symbol_path",
+    "imports",
+    "calls",
+    "raises",
+    "decorators",
+    "uses_config_env",
+    "references_db_model",
+    "calls_external_api"
+  ],
+  "properties": {
+    "entity_id": {
+      "type": "string",
+      "pattern": "^code:"
+    },
+    "entity_type": {
+      "type": "string",
+      "enum": ["code.module", "code.class", "code.function"]
+    },
+    "module_path": {
+      "type": "string"
+    },
+    "symbol_path": {
+      "type": "string"
+    },
+    "class_name": {
+      "type": ["string", "null"]
+    },
+    "function_name": {
+      "type": ["string", "null"]
+    },
+    "decorators": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "imports": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "calls": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "raises": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "uses_config_env": {
+      "type": "boolean"
+    },
+    "references_db_model": {
+      "type": "boolean"
+    },
+    "calls_external_api": {
+      "type": "boolean"
+    },
+    "feature_tags": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "task_ids": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "api_endpoints": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "owner": {
+      "type": ["string", "null"]
+    },
+    "last_updated": {
+      "type": ["string", "null"],
+      "format": "date"
+    }
+  }
+}

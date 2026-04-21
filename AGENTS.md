@@ -12,6 +12,12 @@
 
 ## 디렉터리 역할
 - `README.md`: 저장소 전체 구조와 문서 진입점.
+- `meta/`: agent용 역색인, relation graph, compressed state, 메타 스키마.
+  - `meta/schema/`
+  - `meta/entities/`
+  - `meta/graph/`
+  - `meta/index/`
+  - `meta/state/`
 - `docs/`: 프로젝트 기준 문서.
   - `docs/engine/`
   - `docs/training/`
@@ -34,18 +40,29 @@
 - `src/engine/`: 엔진 구현 코드
 - `src/training/`: 학습 및 self-play 구현 코드
 - `src/api/`: 실행부 구현 코드
+- `frontend/`: 분리된 런타임 프론트엔드 코드
 - `tests/unit/`: 단위 테스트
 - `tests/integration/`: 통합/인수 테스트
 
 ## 작업 기본 순서
 1. 루트 `README.md`를 읽어 저장소 구조와 작업 축을 확인한다.
 2. 루트 `AGENTS.md`를 읽어 전역 규칙과 문서 우선순위를 확인한다.
-3. 관련 `docs/`를 읽어 상위 기준을 확인한다.
-4. 관련 `specs/`와 `agents/`를 읽어 상세 계약과 역할 기준을 확인한다.
-5. 관련 `tasks/`를 읽어 작업 목표와 완료 조건을 확인한다.
-6. 구현, 명세 작성, 리뷰 중 현재 작업을 수행한다.
-7. 리뷰 작업이면 결과를 `reviews/` 아래에 기록한다.
-8. 사용자가 요청하지 않은 범위는 수정하지 않는다.
+3. `meta/README.md`와 관련 `meta/state/`, `meta/index/`, `meta/graph/`를 읽어 작업 진입점과 영향 범위를 좁힌다.
+4. 관련 `docs/`를 읽어 상위 기준을 확인한다.
+5. 관련 `specs/`와 `agents/`를 읽어 상세 계약과 역할 기준을 확인한다.
+6. 관련 `tasks/`를 읽어 작업 목표와 완료 조건을 확인한다.
+7. 구현 작업이면 `tasks/implementation-checklist.md`에서 해당 축 상태를 먼저 확인한다.
+8. 구현, 명세 작성, 리뷰 중 현재 작업을 수행한다.
+9. 구현 작업이면 완료 후 `tasks/implementation-checklist.md`와 필요한 `meta/` 산출물을 함께 갱신한다.
+10. 리뷰 작업이면 결과를 `reviews/` 아래에 기록한다.
+11. 사용자가 요청하지 않은 범위는 수정하지 않는다.
+
+## 메타 계층 원칙
+- `meta/`는 읽기 최적화와 영향 범위 추적을 위한 운영 계층이다.
+- `meta/`는 기준 문서를 대체하지 않는다.
+- 상충 시 `docs/`, `specs/`, `tasks/`, `AGENTS.md`가 우선한다.
+- `meta/`의 역색인과 relation graph는 관련 코드, 문서, 테스트를 빠르게 찾기 위한 보조 자료다.
+- `meta/state/compressed/`는 현재 집중 대상과 리스크, 검증 포인트를 짧게 유지하기 위한 상태 계층이다.
 
 ## 문서 우선순위
 1. 사용자의 현재 요청
@@ -54,6 +71,7 @@
 4. 관련 `agents/`
 5. 관련 `specs/`
 6. 관련 `docs/`
+7. 관련 `meta/`
 
 동일 수준 문서가 충돌하면 더 작업에 가까운 문서를 우선하고, 해결되지 않으면 충돌 사실을 문서나 리뷰에 남긴다.
 
@@ -69,6 +87,15 @@
 - 기준 문서 수정은 사용자가 문서 정비 또는 수정 자체를 요청했을 때 허용한다.
 - 리뷰 전용 작업에서는 구현 코드를 수정하지 않는다.
 - 새 규칙을 추가할 때는 기존 `docs/`와 `specs/`와의 충돌 여부를 먼저 확인한다.
+
+## 체크리스트 운영 규칙
+- 구현 상태 관리는 `tasks/implementation-checklist.md`를 기준으로 한다.
+- `engine` 구현 상태 갱신 책임은 `agents/engine-agent.md`에 있다.
+- `training` 데이터/메타데이터 계층 갱신 책임은 `agents/training-data-agent.md`에 있다.
+- `training` 실행/학습 루프 계층 갱신 책임은 `agents/training-loop-agent.md`에 있다.
+- `runtime` 구현 상태 갱신 책임은 `agents/runtime-agent.md`에 있다.
+- `agents/governance-agent.md`는 체크리스트, 명세 정합성, 리뷰 출력 형식, 메타 구조, 메타 최신 여부 검증 역할을 맡는다.
+- 구현 작업에서는 관련 코드를 수정한 뒤 해당 축 체크리스트와 필요한 메타 상태를 함께 갱신하는 것을 기본값으로 한다.
 
 ## 리뷰 원칙
 - 감상이 아니라 기준 문서 대비 차이를 지적한다.

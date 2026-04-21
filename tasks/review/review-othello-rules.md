@@ -5,7 +5,7 @@
 
 ## 선행 입력
 - `docs/engine/othello-rules.md`
-- `agents/review-agent.md`
+- `agents/governance-agent.md`
 - 루트 `AGENTS.md`
 
 ## 리뷰 범위

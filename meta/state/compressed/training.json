@@ -1,0 +1,36 @@
+{
+  "axis": "training",
+  "focus_entities": [
+    "training ops 세션 상태 객체",
+    "training ops 세션 메타데이터 / `active_stage`",
+    "training ops latest iteration snapshot",
+    "training ops history snapshot",
+    "training ops checkpoint inventory"
+  ],
+  "direct_specs": [],
+  "direct_tasks": [
+    "tasks/training/implement-checkpoint-policy.md",
+    "tasks/training/implement-cnn-policy-model.md",
+    "tasks/training/implement-episode-storage.md",
+    "tasks/training/implement-rl-components.md",
+    "tasks/training/implement-self-play.md",
+    "tasks/training/implement-trainer-loop.md",
+    "tasks/training/implement-training-docker.md",
+    "tasks/training/implement-training-ops.md",
+    "tasks/training/implement-training-pipeline.md"
+  ],
+  "direct_tests": [],
+  "neighbors": [],
+  "risk_summary": [
+    "training ops history snapshot"
+  ],
+  "open_checks": [
+    "training ops 세션 상태 객체",
+    "training ops 세션 메타데이터 / `active_stage`",
+    "training ops latest iteration snapshot",
+    "training ops checkpoint inventory",
+    "checkpoint 비교 전용 실행기",
+    "checkpoint 비교 결과 직렬화"
+  ],
+  "last_updated": "2026-04-21"
+}

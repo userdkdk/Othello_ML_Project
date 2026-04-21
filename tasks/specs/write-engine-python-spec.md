@@ -7,7 +7,7 @@
 - `docs/engine/othello-rules.md`
 - `docs/engine/othello-module-spec.md`
 - `docs/engine/othello-acceptance-tests.md`
-- `agents/spec-agent.md`
+- `agents/governance-agent.md`
 
 ## 필수 작업
 - 엔진 모듈 구조 정의
@@ -21,6 +21,7 @@
 
 ## 완료 조건
 - `src/engine`의 파일 구조와 책임이 명확하다.
-- `Board`, `GameState`, `Position`, `MoveResult` 같은 핵심 타입이 정의되어 있다.
+- `Board`, `CellState`, `Player`, `Position`, `GameStatus`, `MoveErrorCode`, `GameState`, `MoveResult` 같은 핵심 타입이 정의되어 있다.
+- `GameState`에는 최소한 `board`, `current_player`, `status`와 함께 필요한 부가 상태인 `move_history`, `last_move` 반영 여부가 명확히 적혀 있다.
 - 유효 수 계산, 수 적용, 패스, 종료 판정 API 계약이 문서화되어 있다.
 - 실패 시 상태 불변 규약이 구현 가능한 수준으로 적혀 있다.

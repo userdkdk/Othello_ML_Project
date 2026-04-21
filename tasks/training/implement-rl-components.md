@@ -9,7 +9,7 @@
 - `docs/training/predict-api.md`
 - `specs/training/rl-components-spec.md`
 - `specs/training/self-play-data-schema.md`
-- `agents/training-agent.md`
+- `agents/training-data-agent.md`
 
 ## 필수 작업
 - `match_runner`

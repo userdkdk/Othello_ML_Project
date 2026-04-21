@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "meta/schema/edge.schema.json",
+  "title": "Relation Edge",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["from", "relation", "to"],
+  "properties": {
+    "from": {
+      "type": "string"
+    },
+    "relation": {
+      "type": "string",
+      "enum": [
+        "defines",
+        "implements",
+        "satisfies",
+        "verifies",
+        "calls",
+        "raises",
+        "uses",
+        "references",
+        "exposes",
+        "owned_by"
+      ]
+    },
+    "to": {
+      "type": "string"
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  }
+}

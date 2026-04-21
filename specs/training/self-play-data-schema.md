@@ -69,10 +69,10 @@
   "state": {
     "board": [["EMPTY"]],
     "current_player": "BLACK",
-    "valid_moves": [[2, 3], [3, 2], [4, 5], [5, 4]],
     "is_finished": false,
     "winner": null
   },
+  "valid_moves": [[2, 3], [3, 2], [4, 5], [5, 4]],
   "action": {
     "kind": "MOVE",
     "position": [2, 3]
@@ -95,25 +95,39 @@
 - `player: str`
   - 행동 주체
 - `state: StateRecord`
+- `valid_moves: list[list[int]]`
 - `action: ActionRecord`
 - `policy_output: PolicyOutputRecord | None`
 - `reward: int | float | None`
   - 기본 저장은 `null`, 종료 후 후처리로 채워도 됨
 
+선택 확장 필드:
+- `action_mask: list[int]`
+
+주의:
+- 현재 구현의 메모리상 `TurnRecord`에는 `valid_moves`, `action_mask`, `encoded_state`가 함께 존재할 수 있다.
+- 그러나 기본 직렬화 출력은 이 문서의 저장 스키마를 우선하며, 현재 `encoded_state`는 JSON화된 episode에 포함되지 않는다.
+- 현재 기본 writer는 `valid_moves`, `action_mask`를 추가 필드로 함께 저장할 수 있다.
+
 ## 상태 레코드
 - `board: list[list[str]]`
   - 8x8, 각 원소는 `EMPTY`, `BLACK`, `WHITE`
 - `current_player: str`
-- `valid_moves: list[list[int]]`
-  - 예: `[[2, 3], [3, 2]]`
 - `is_finished: bool`
 - `winner: str | null`
+
+규약:
+- `valid_moves`의 canonical 저장 위치는 turn record top-level이다.
+- `state` 안에 `valid_moves`를 중복 저장하는 포맷은 기본 스키마로 간주하지 않는다.
 
 ## 액션 레코드
 - `kind: str`
   - `MOVE` | `PASS`
 - `position: list[int] | null`
   - `PASS`면 `null`
+
+규약:
+- `PASS`는 유효 수가 없을 때만 허용한다.
 
 ## 정책 출력 레코드
 - `distribution_type: str`
@@ -127,7 +141,7 @@
 
 규약:
 - `full_action_space`이면 최대 65개 액션을 표현한다.
-- `valid_moves_only`이면 `state.valid_moves` 순서와 일치해야 한다.
+- `valid_moves_only`이면 turn record의 `valid_moves` 순서와 일치해야 한다.
 
 ## 전체 액션 공간 인덱스 규약
 - `full_action_space` 분포를 벡터로 다룰 때 고정 길이는 `65`다.

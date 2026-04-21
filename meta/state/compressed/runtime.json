@@ -1,0 +1,34 @@
+{
+  "axis": "runtime",
+  "focus_entities": [
+    "기본 FastAPI 게임 UI",
+    "`human_vs_human` / `human_vs_model` / `model_vs_model` 모드 완성",
+    "inference checkpoint 경로 기반 흑/백 agent 구성",
+    "학습 대시보드 UI",
+    "`GET /api/training/state`"
+  ],
+  "direct_specs": [],
+  "direct_tasks": [
+    "tasks/runtime/implement-fastapi-runtime.md",
+    "tasks/runtime/implement-training-dashboard.md"
+  ],
+  "direct_tests": [],
+  "neighbors": [],
+  "risk_summary": [
+    "기본 FastAPI 게임 UI",
+    "`human_vs_human` / `human_vs_model` / `model_vs_model` 모드 완성",
+    "inference checkpoint 경로 기반 흑/백 agent 구성",
+    "runtime 테스트"
+  ],
+  "open_checks": [
+    "학습 대시보드 UI",
+    "`GET /api/training/state`",
+    "`POST /api/training/start`",
+    "`POST /api/training/start-from-checkpoint`",
+    "`POST /api/training/run-once`",
+    "`POST /api/training/pause`",
+    "`POST /api/training/resume-session`",
+    "`POST /api/training/stop`"
+  ],
+  "last_updated": "2026-04-21"
+}

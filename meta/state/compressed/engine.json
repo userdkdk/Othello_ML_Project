@@ -1,0 +1,15 @@
+{
+  "axis": "engine",
+  "focus_entities": [],
+  "direct_specs": [],
+  "direct_tasks": [
+    "tasks/engine/implement-board.md",
+    "tasks/engine/implement-game-engine.md",
+    "tasks/engine/implement-move-validator.md"
+  ],
+  "direct_tests": [],
+  "neighbors": [],
+  "risk_summary": [],
+  "open_checks": [],
+  "last_updated": "2026-04-21"
+}

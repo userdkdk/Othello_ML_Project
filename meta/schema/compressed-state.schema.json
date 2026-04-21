@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "meta/schema/compressed-state.schema.json",
+  "title": "Compressed State",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "axis",
+    "focus_entities",
+    "direct_specs",
+    "direct_tasks",
+    "direct_tests",
+    "risk_summary",
+    "open_checks"
+  ],
+  "properties": {
+    "axis": {
+      "type": "string",
+      "enum": ["engine", "training", "runtime"]
+    },
+    "focus_entities": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "direct_specs": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "direct_tasks": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "direct_tests": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "neighbors": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "risk_summary": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "open_checks": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "last_updated": {
+      "type": ["string", "null"],
+      "format": "date"
+    }
+  }
+}
