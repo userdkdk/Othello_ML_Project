@@ -1,0 +1,43 @@
+__pycache__/
+**/__pycache__/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.codex
+*.pyc
+*.pyo
+*.pyd
+.python-version
+.idea/
+.vscode/
+.env
+.env.*
+.venv/
+.venv*/
+venv/
+data/
+checkpoints/
+runs/
+logs/
+tmp_logs/
+*.log
+tmp-empty.pt
+
+frontend/node_modules/
+frontend/dist/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
+
+### Mac OS ###
+.DS_Store
+
+### Shell Temp ###
+scripts/tmp script.txt

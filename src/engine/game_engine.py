@@ -22,9 +22,9 @@ def _player_cell(player: Player) -> CellState:
 def _winner_from_board(board: Board) -> GameResult:
     counts = board.count_cells()
     if counts[CellState.BLACK] > counts[CellState.WHITE]:
-        return GameResult.BLACK_WIN
+        return GameResult.BLACK
     if counts[CellState.WHITE] > counts[CellState.BLACK]:
-        return GameResult.WHITE_WIN
+        return GameResult.WHITE
     return GameResult.DRAW
 
 

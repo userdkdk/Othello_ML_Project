@@ -23,8 +23,8 @@ class Player(str, Enum):
 
 
 class GameResult(str, Enum):
-    BLACK_WIN = "BLACK_WIN"
-    WHITE_WIN = "WHITE_WIN"
+    BLACK = "BLACK"
+    WHITE = "WHITE"
     DRAW = "DRAW"
 
 

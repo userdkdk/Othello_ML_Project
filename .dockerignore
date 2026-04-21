@@ -2,10 +2,8 @@ __pycache__/
 .pytest_cache/
 .git/
 reviews/
-tests/
 docs/
 specs/
 tasks/
 agents/
 prompts/
-scripts/

@@ -118,7 +118,7 @@ def test_pass_and_consecutive_no_moves_finish_game():
     assert result.success is True
     assert state.current_player == Player.BLACK
     assert state.status.is_finished is True
-    assert state.status.winner == GameResult.BLACK_WIN
+    assert state.status.winner == GameResult.BLACK
 
 
 def test_full_board_finishes_immediately_with_winner():
@@ -127,7 +127,7 @@ def test_full_board_finishes_immediately_with_winner():
     status = evaluate_game_status(board, Player.BLACK)
 
     assert status.is_finished is True
-    assert status.winner == GameResult.WHITE_WIN
+    assert status.winner == GameResult.WHITE
 
 
 def test_finished_game_rejects_move_and_pass():
@@ -153,6 +153,6 @@ def test_winner_evaluation_covers_black_white_and_draw():
         for col in range(8):
             draw_board.set_cell((row, col), CellState.WHITE)
 
-    assert evaluate_game_status(black_board, Player.BLACK).winner == GameResult.BLACK_WIN
-    assert evaluate_game_status(white_board, Player.BLACK).winner == GameResult.WHITE_WIN
+    assert evaluate_game_status(black_board, Player.BLACK).winner == GameResult.BLACK
+    assert evaluate_game_status(white_board, Player.BLACK).winner == GameResult.WHITE
     assert evaluate_game_status(draw_board, Player.BLACK).winner == GameResult.DRAW

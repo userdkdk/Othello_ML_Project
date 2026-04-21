@@ -91,7 +91,7 @@ def test_pass_turn_succeeds_when_current_player_has_no_valid_move():
 
 def test_apply_move_fails_after_game_finished():
     state = create_new_game()
-    state.status = GameStatus(is_finished=True, winner=GameResult.BLACK_WIN)
+    state.status = GameStatus(is_finished=True, winner=GameResult.BLACK)
     before = state.clone()
 
     result = apply_move(state, (2, 3))
@@ -119,7 +119,7 @@ def test_evaluate_game_status_finishes_when_board_is_full():
     status = evaluate_game_status(board, Player.BLACK)
 
     assert status.is_finished is True
-    assert status.winner == GameResult.BLACK_WIN
+    assert status.winner == GameResult.BLACK
 
 
 def test_evaluate_game_status_finishes_black_win_when_no_player_can_move():
@@ -129,7 +129,7 @@ def test_evaluate_game_status_finishes_black_win_when_no_player_can_move():
     status = evaluate_game_status(board, Player.WHITE)
 
     assert status.is_finished is True
-    assert status.winner == GameResult.BLACK_WIN
+    assert status.winner == GameResult.BLACK
 
 
 def test_evaluate_game_status_finishes_white_win_when_no_player_can_move():
@@ -139,7 +139,7 @@ def test_evaluate_game_status_finishes_white_win_when_no_player_can_move():
     status = evaluate_game_status(board, Player.BLACK)
 
     assert status.is_finished is True
-    assert status.winner == GameResult.WHITE_WIN
+    assert status.winner == GameResult.WHITE
 
 
 def test_evaluate_game_status_finishes_draw_when_no_player_can_move():
